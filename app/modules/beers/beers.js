@@ -24,6 +24,25 @@
 
   function BeersCreateCtrl($scope, $http) {
 
+    $scope.create = function(cerveja) {
+      var url = 'http://localhost:3000/api/beers'
+        , method= 'POST'
+        ;
+
+      $http({
+        url: url
+      , method: method
+      , data: cerveja
+      })
+      .success(function(data) {
+        console.log('Sucesso: ', data);
+        $scope.msg = 'Cerveja ' + cerveja.name + ' cadastrada com sucesso!';
+      })
+      .error(function(data) {
+        console.log('Erro: ', data);
+        $scope.msg = 'Cerveja ' + cerveja.name + ' não pode ser cadastrada!';
+      });
+    }
   }
 
   function BeersCtrl($scope, $http) {
