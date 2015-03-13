@@ -10,7 +10,11 @@
   </thead>
   <tbody>
     <tr data-ng-repeat='cerveja in cervejas | orderBy:predicate:reverse'>
-      <td>{{ cerveja.name }}</td>
+      <td>
+        <a href="#/beers/{{cerveja._id}}">
+          {{ cerveja.name }}
+        </a>
+      </td>
       <td>{{ cerveja.price }}</td>
     </tr>
   </tbody>
