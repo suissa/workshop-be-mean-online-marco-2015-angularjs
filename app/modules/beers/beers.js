@@ -17,7 +17,7 @@
       controller: 'BeersGetCtrl'
     })
     .when('/beers/:id/edit', {
-      templateUrl: 'modules/beers/views/get.html',
+      templateUrl: 'modules/beers/views/update.html',
       controller: 'BeersEditCtrl'
     });
   }])
@@ -79,6 +79,26 @@
   }
 
   function BeersGetCtrl($scope, $http, $routeParams) {
+
+    var id = $routeParams.id
+      , url = 'http://localhost:3000/api/beers/'+id
+      , method = 'GET'
+      ;
+
+    $http({
+      url: url
+    , method: method
+    })
+    .success(function(data) {
+      $scope.cerveja = data;
+      console.log('Sucesso', data);
+    })
+    .error(function(data) {
+      console.log('Erro: ', data);
+    });
+  }
+
+  function BeersEditCtrl($scope, $http, $routeParams) {
 
     var id = $routeParams.id
       , url = 'http://localhost:3000/api/beers/'+id
