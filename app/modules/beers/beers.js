@@ -15,12 +15,17 @@
     .when('/beers/:id', {
       templateUrl: 'modules/beers/views/get.html',
       controller: 'BeersGetCtrl'
+    })
+    .when('/beers/:id/edit', {
+      templateUrl: 'modules/beers/views/get.html',
+      controller: 'BeersEditCtrl'
     });
   }])
 
   .controller('BeersCtrl', BeersCtrl)
   .controller('BeersGetCtrl', BeersGetCtrl)
-  .controller('BeersCreateCtrl', BeersCreateCtrl);
+  .controller('BeersCreateCtrl', BeersCreateCtrl)
+  .controller('BeersEditCtrl', BeersEditCtrl);
 
   function BeersCreateCtrl($scope, $http) {
 
@@ -95,6 +100,7 @@
 
   BeersCtrl.$inject = ['$scope', '$http'];
   BeersCreateCtrl.$inject = ['$scope', '$http']
-  BeersGetCtrl.$inject = ['$scope', '$http', '$routeParams'];
+  BeersGetCtrl.$inject = ['$scope', '$http', '$routeParams']
+  BeersEditCtrl.$inject = ['$scope', '$http', '$routeParams'];
 
 })();
