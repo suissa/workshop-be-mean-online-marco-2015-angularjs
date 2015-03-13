@@ -76,6 +76,12 @@
       console.log('Erro: ', data);
     });
 
+    $scope.remove = function(cerveja) {
+      if(confirm("Deseja remover a cerveja " + cerveja.name + "?")) {
+        var index = $scope.cervejas.indexOf(cerveja);
+        $scope.cervejas.splice(index, 1);
+      }
+    }
   }
 
   function BeersGetCtrl($scope, $http, $routeParams) {
