@@ -12,7 +12,7 @@
 
   .controller('BeersCtrl', BeersCtrl);
 
-  function BeersCtrl($scope) {
+  function BeersCtrl($scope, $http) {
     $scope.msg = 'Listagem das cervejas';
     $scope.reverse = false;
     $scope.predicate = 'name';
@@ -21,24 +21,25 @@
       $scope.predicate = predicate;
       $scope.reverse = !$scope.reverse
     }
-  // criamos um array de cervejas
-    var cervejas = [{
-      name: 'Kaiser', price: 2
-      }, {
-        name: 'Skol', price: 3
-      }, {
-        name: 'Glacial', price: 4
-      }, {
-        name: 'Polar', price: 6
-      }, {
-        name: 'Heineken', price: 10
-      }
-    ];
-  // instanciamos nosso array no nosso scope
-  // para que tenhamos acesso à esse array na View
-    $scope.cervejas = cervejas;
+
+    var url = 'http://localhost:3000/api/beers'
+      , method = 'GET'
+      ;
+
+    $http({
+      url: url
+    , method: method
+    })
+    .success(function(data) {
+      $scope.cervejas = data;
+      console.log('Sucesso', data);
+    })
+    .error(function(data) {
+      console.log('Erro: ', data);
+    });
+
   }
 
-  BeersCtrl.$inject = ['$scope'];
+  BeersCtrl.$inject = ['$scope', '$http'];
 
 })();
