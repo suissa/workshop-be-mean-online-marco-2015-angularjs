@@ -5,17 +5,26 @@
 
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/beers', {
-      templateUrl: 'modules/beers/beers.html',
+      templateUrl: 'modules/beers/views/beers.html',
       controller: 'BeersCtrl'
     })
+    .when('/beers/create', {
+      templateUrl: 'modules/beers/views/create.html',
+      controller: 'BeersCreateCtrl'
+    })
     .when('/beers/:id', {
-      templateUrl: 'modules/beers/get.html',
+      templateUrl: 'modules/beers/views/get.html',
       controller: 'BeersGetCtrl'
     });
   }])
 
   .controller('BeersCtrl', BeersCtrl)
-  .controller('BeersGetCtrl', BeersGetCtrl);
+  .controller('BeersGetCtrl', BeersGetCtrl)
+  .controller('BeersCreateCtrl', BeersCreateCtrl);
+
+  function BeersCreateCtrl($scope, $http) {
+
+  }
 
   function BeersCtrl($scope, $http) {
     $scope.msg = 'Listagem das cervejas';
@@ -66,6 +75,7 @@
   }
 
   BeersCtrl.$inject = ['$scope', '$http'];
+  BeersCreateCtrl.$inject = ['$scope', '$http']
   BeersGetCtrl.$inject = ['$scope', '$http', '$routeParams'];
 
 })();
