@@ -116,6 +116,24 @@
     .error(function(data) {
       console.log('Erro: ', data);
     });
+
+    $scope.update = function(cerveja) {
+      var method = 'PUT';
+
+      $http({
+        url: url
+      , method: method
+      , data: cerveja
+      })
+      .success(function(data) {
+        console.log('Sucesso: ', data);
+        $scope.msg = 'Cerveja ' + cerveja.name + ' alterada com sucesso!';
+      })
+      .error(function(data) {
+        console.log('Erro: ', data);
+        $scope.msg = 'Cerveja ' + cerveja.name + ' não pode ser alterada!';
+      });
+    }
   }
 
   BeersCtrl.$inject = ['$scope', '$http'];
