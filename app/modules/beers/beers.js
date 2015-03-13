@@ -78,8 +78,22 @@
 
     $scope.remove = function(cerveja) {
       if(confirm("Deseja remover a cerveja " + cerveja.name + "?")) {
-        var index = $scope.cervejas.indexOf(cerveja);
-        $scope.cervejas.splice(index, 1);
+        var _url = url + '/' + cerveja._id
+          , method = 'DELETE'
+          ;
+
+        $http({
+          url: _url,
+          method: method
+        })
+        .success(function(data) {
+          console.log('Sucesso: ', data);
+          var index = $scope.cervejas.indexOf(cerveja);
+          $scope.cervejas.splice(index, 1);
+        })
+        .error(function(data) {
+          console.log('Erro: ', data);
+        })
       }
     }
   }
