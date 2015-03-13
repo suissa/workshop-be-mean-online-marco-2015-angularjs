@@ -1,2 +1,17 @@
 <h2>Workshop Be MEAN</h2>
 <p>Msg: {{ msg }}</p>
+
+<table>
+  <thead>
+    <tr>
+      <th data-ng-click="ordenar('name')">Name</th>
+      <th data-ng-click="ordenar('price')">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-ng-repeat='cerveja in cervejas | orderBy:predicate:reverse'>
+      <td>{{ cerveja.name }}</td>
+      <td>{{ cerveja.price }}</td>
+    </tr>
+  </tbody>
+</table>
